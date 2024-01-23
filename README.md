@@ -3,6 +3,8 @@ Created by Chloe Quijano
 
 Purpose: Development Technical Test
 
+Tech Stack: React.js + MongoDB
+
 ## Run app
 
 First clone this repository then run `npm install`
