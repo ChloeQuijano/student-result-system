@@ -14,8 +14,13 @@ const CourseGrid = ({ triggerFetch }) => {
         fetch('/api/courses')
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
-            setTableData(data);
+            const formattedData = data.map((course) => ({
+                ...course,
+                id: course._id,
+            }));
+
+            console.log(formattedData);
+            setTableData(formattedData);
           })
           .catch((error) => {
             console.error('Error fetching course data:', error);
@@ -29,6 +34,12 @@ const CourseGrid = ({ triggerFetch }) => {
     const handleDeleteSelectedRows = () => {
         // Create an array of selected row IDs
         const courseIdsToDelete = selectedRows.map((selectedRow) => selectedRow._id);
+
+        console.log(courseIdsToDelete)
+
+        if (courseIdsToDelete.length === 0) {
+            return;
+        }
 
         // Make a DELETE request to the server
         fetch('/api/courses/delete', {
@@ -58,8 +69,10 @@ const CourseGrid = ({ triggerFetch }) => {
                 getRowId={(row) => row._id}
                 checkboxSelection
                 onSelectionModelChange={(newSelection) => {
-                    setSelectedRows(newSelection.selectionModel);
+                    console.log(newSelection);
+                    setSelectedRows(newSelection);
                 }}
+                selectionModel={selectedRows}
             />
         </div>
     )

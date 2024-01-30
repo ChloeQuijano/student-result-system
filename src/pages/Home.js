@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SideNavBar from '../components/SideNavBar';
 import StudentPage from './StudentPage';
 import CoursePage from './CoursePage';
+import ResultsPage from './ResultsPage';
 
 export default function Home() {
   return (
@@ -14,7 +15,12 @@ export default function Home() {
                 <Routes>
                     <Route path="/students" element={<StudentPage />} />
                     <Route path="/courses" element={<CoursePage />} />
-                    <Route path="/" element={<div className="content"><h1>Welcome to the Home Page</h1></div>} />
+                    <Route path="/results" element={<ResultsPage />} />
+                    <Route path="/" element={
+                      <div className="content" style={{ textAlign: "center" }}>
+                        <h1>Welcome to the Home Page</h1>
+                      </div>} 
+                    />
                 </Routes>
             </div>
         </Router>
